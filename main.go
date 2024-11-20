@@ -13,8 +13,19 @@ import (
 
 func main() {
 	// Load environment variables
+	currentDir, _ := os.Getwd()
+	log.Printf("Current working directory: %s", currentDir)
+	// Log all environment variables for debugging
+	for _, env := range os.Environ() {
+		log.Println(env)
+	}
 	err := godotenv.Load()
+
 	if err != nil {
+		// Check if file exists
+		if _, statErr := os.Stat(".env"); os.IsNotExist(statErr) {
+			log.Println(".env file does not exist in current directory")
+		}
 		log.Fatal("Error loading .env file")
 	}
 
