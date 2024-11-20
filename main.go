@@ -8,26 +8,26 @@ import (
 	"figorate/routes"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 )
 
 func main() {
 	// Load environment variables
-	currentDir, _ := os.Getwd()
-	log.Printf("Current working directory: %s", currentDir)
-	// Log all environment variables for debugging
+	// currentDir, _ := os.Getwd()
+	// log.Printf("Current working directory: %s", currentDir)
+	// // Log all environment variables for debugging
 	for _, env := range os.Environ() {
 		log.Println(env)
 	}
-	err := godotenv.Load()
+	// err := godotenv.Load()
 
-	if err != nil {
-		// Check if file exists
-		if _, statErr := os.Stat(".env"); os.IsNotExist(statErr) {
-			log.Println(".env file does not exist in current directory")
-		}
-		log.Fatal("Error loading .env file")
-	}
+	// if err != nil {
+	// 	// Check if file exists
+	// 	if _, statErr := os.Stat(".env"); os.IsNotExist(statErr) {
+	// 		log.Println(".env file does not exist in current directory")
+	// 	}
+	// 	log.Fatal("Error loading .env file")
+	// }
 
 	// Connect to MongoDB
 	database.ConnectDatabase()
