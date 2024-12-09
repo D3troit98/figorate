@@ -15,6 +15,7 @@ type User struct {
 	AuthProvider   string             `bson:"auth_provider" json:"auth_provider"`
 	ProfilePicture string             `bson:"profile_picture" json:"profile_picture"`
 	IsActive       bool               `bson:"is_active" json:"is_active"`
+	Role           string             `bson:"role" json:"role"`
 	LastLogin      time.Time          `bson:"last_login" json:"last_login"`
 	CreatedAt      time.Time          `bson:"created_at" json:"created_at"`
 	UpdatedAt      time.Time          `bson:"updated_at" json:"updated_at"`
@@ -50,4 +51,10 @@ type SignInRequest struct {
 type ResetPasswordRequest struct {
 	Email       string `json:"email" binding:"required,email"`
 	NewPassword string `json:"new_password" binding:"required,min=8"`
+}
+
+type EmailVerificationToken struct {
+	UserID    primitive.ObjectID `bson:"user_id"`
+	Token     string             `bson:"token"`
+	ExpiresAt time.Time          `bson:"expires_at"`
 }

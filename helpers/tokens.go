@@ -1,6 +1,8 @@
 package helpers
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"os"
 	"time"
 
@@ -36,4 +38,13 @@ func GenerateTokens(userID string) (string, string, error) {
 	}
 
 	return signedAccessToken, signedRefreshToken, nil
+}
+
+func GenerateVerificationToken() (string, error) {
+	b := make([]byte, 32)
+	_, err := rand.Read(b)
+	if err != nil {
+		return "", err
+	}
+	return base64.URLEncoding.EncodeToString(b), nil
 }

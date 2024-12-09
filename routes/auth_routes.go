@@ -16,6 +16,7 @@ func SetupAuthRoutes(r *gin.Engine) {
 	r.POST("/signup", authController.SignUp)
 	r.POST("/signin", authController.SignIn)
 	r.POST("/refresh-token", authController.RefreshToken)
+	r.GET("/verify-email", authController.VerifyEmail)
 
 	// Protected routes
 	protectedRoutes := r.Group("/")
